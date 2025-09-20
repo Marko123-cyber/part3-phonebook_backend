@@ -63,8 +63,8 @@ app.delete('/api/persons/:id', (request, response)=>{
     response.status(204).end();
 })
 
-const generateId=()=>{
-    return Math.floor(Math.random()*1000)
+const generateId = () => {
+    return String(Math.floor(Math.random() * 1000))
 }
 
 app.post('/api/persons', (request, response)=>{
@@ -92,7 +92,7 @@ app.post('/api/persons', (request, response)=>{
 
 
 app.put('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
+  const id = request.params.id
   const body = request.body
 
   const personIndex = persons.findIndex(person => person.id === id)
