@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
+    "build:ui": "rm -rf dist && cd ../phonebook && npm install && npm run build && cp -r dist ../phonebook_backend/dist",
+    "deploy:full": "npm run build:ui && git add . && git commit -m 'UI build' && git push",
     "test": "echo \"No test command yet\" && exit 1"
   },
   "author": "",
