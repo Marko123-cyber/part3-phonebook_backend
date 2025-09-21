@@ -6,8 +6,21 @@ const personSchema = new mongoose.Schema({
     minlength: 3,
     required: true,
   },
-  number: String
-});
+  number: {
+    type: String,
+    required: true,
+    validate: {
+      validator: (v) => {
+        if (!v || v.length < 8) {
+          return false
+        }
+        return /^\d{2,3}-\d+$/.test(v)
+      },
+      message: props => `${props.value} is not a valid phone number! Must be at least 8 characters and in the form XX-XXXXXXX or XXX-XXXXXXX`
+    }
+  }
+})
+
 
 personSchema.set('toJSON', {
     transform: (document, ret) => {
